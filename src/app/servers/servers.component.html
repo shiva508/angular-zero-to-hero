@@ -1,0 +1,10 @@
+<h1>Micro Service details </h1>
+<label >Server Name</label>
+<!-- <input type="text" class="form-control" (input)="onUpdateServerName($event)"> -->
+<input type="text" class="form-control" [(ngModel)]="serverName"/>
+<!-- <p>{{serverName}}</p> -->
+<button class="btn btn-primary" [disabled]="allAddNew" (click)="onAddNewServer()">Add new server</button>
+<h2>{{serverCreationStatus}}</h2>
+<p>{{allAddNew}}</p>
+<P [innerText]="allAddNew"></P>
+<app-server></app-server>
