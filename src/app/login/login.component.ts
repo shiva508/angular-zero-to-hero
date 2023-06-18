@@ -4,25 +4,30 @@ import { timeInterval } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  formdetails:string="Form Details"
-  username:string="";
-  password:string="";
+  formdetails: string = 'Form Details';
+  username: string = '';
+  password: string = '';
 
-  submitEnabled:boolean=true;
-  constructor(){
+  submitEnabled: boolean = true;
+  isFormFilled: boolean = false;
+  serverStatus: string = 'offline';
+  users: any = [];
+  constructor() {
     // setTimeout(()=>{
     //   this.submitEnabled=false;
     // },2000);
+    this.serverStatus = Math.random() > 0.5 ? 'offline' : 'online';
   }
 
-  onSubmit(){
-    console.log(this.username)
-    console.log(this.password)
-    console.log("Adding to server")
-    this.username='';
-    this.password='';
+  onSubmit() {
+    this.isFormFilled = true;
+    this.users.push(this.username);
+  }
+
+  getColor() {
+    return this.serverStatus === 'offline' ? 'red' : 'green';
   }
 }

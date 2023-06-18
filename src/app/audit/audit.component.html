@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="card-header">
+    <button class="btn btn-primary" (click)="onAudit()">Audit Time</button>
+
+    <h2 *ngIf="isToggle">Display audit logs</h2>
+    <ul class="list-group list-group-flush">
+      <li
+        class="list-group-item"
+        *ngFor="let audit of audits; index as i"
+        [ngStyle]="{ backgroundColor: i >= 5 ? 'green' : 'yellow' }"
+      >
+        {{ audit }}
+      </li>
+    </ul>
+  </div>
+</div>
