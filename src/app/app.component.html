@@ -1,3 +1,17 @@
 <style></style>
-<div class="container"></div>
+<div class="container">
+  <app-cockpit
+    (serverCreated)="onServerAdded($event)"
+    (blueprintCreated)="onBlueprintAdded($event)"
+  ></app-cockpit>
+  <hr />
+  <div class="row">
+    <div class="col-xs-12">
+      <app-server-elements
+        *ngFor="let serverElement of serverElements"
+        [srvElement]="serverElement"
+      ></app-server-elements>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
