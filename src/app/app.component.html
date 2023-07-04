@@ -1,6 +1,6 @@
 <style></style>
 <div class="container">
-  <app-cockpit
+  <!-- <app-cockpit
     (serverCreated)="onServerAdded($event)"
     (blueprintCreated)="onBlueprintAdded($event)"
   ></app-cockpit>
@@ -12,6 +12,17 @@
         [srvElement]="serverElement"
       ></app-server-elements>
     </div>
+  </div> -->
+  <app-login (addUserEvent)="onUserAdded($event)"></app-login>
+  <hr />
+  <div class="card" style="width: 18rem">
+    <div class="card-header">Users</div>
+    <ul class="list-group list-group-flush">
+      <app-cuser-profile
+        *ngFor="let userImp of users"
+        [logUser]="userImp"
+      ></app-cuser-profile>
+    </ul>
   </div>
 </div>
 <router-outlet></router-outlet>

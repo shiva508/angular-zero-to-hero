@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  users: any = [];
   serverElements: any = [
     { name: 'Dearcomred', type: 'server', content: 'L1 server' },
   ];
@@ -27,5 +28,9 @@ export class AppComponent {
       name: blueprintData.serverName,
       content: blueprintData.serverContent,
     });
+  }
+
+  onUserAdded(user: { email: string; password: string }) {
+    this.users.push({ email: user.email, password: user.password });
   }
 }
