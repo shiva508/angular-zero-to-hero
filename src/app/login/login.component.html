@@ -1,19 +1,9 @@
 <form>
   <div class="col-xs-12">
     <label>Email address</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="email"
-      [ngModelOptions]="{ standalone: true }"
-    />
+    <input type="text" class="form-control" #email />
     <label>Password</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="password"
-      [ngModelOptions]="{ standalone: true }"
-    />
+    <input type="text" class="form-control" #password />
     <button (click)="addUser()" class="btn btn-primary">Add</button>
   </div>
 </form>

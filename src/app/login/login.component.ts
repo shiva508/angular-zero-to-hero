@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -6,8 +13,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  email: string = '';
-  password: string = '';
+  @ViewChild('email') emailNew!: ElementRef;
+  @ViewChild('password') passwordNew!: ElementRef;
   constructor() {}
   ngOnInit(): void {}
 
@@ -18,8 +25,8 @@ export class LoginComponent implements OnInit {
 
   addUser() {
     this.addUserEvent.emit({
-      email: this.email,
-      password: this.password,
+      email: this.emailNew.nativeElement.value,
+      password: this.passwordNew.nativeElement.value,
     });
   }
 }
