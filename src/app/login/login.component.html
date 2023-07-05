@@ -7,6 +7,8 @@
       [(ngModel)]="email"
       [ngModelOptions]="{ standalone: true }"
     />
+    <label>Full name</label>
+    <input type="text" class="form-control" #fullName />
     <label>Password</label>
     <input
       type="text"
@@ -14,6 +16,6 @@
       [(ngModel)]="password"
       [ngModelOptions]="{ standalone: true }"
     />
-    <button (click)="addUser()" class="btn btn-primary">Add</button>
+    <button (click)="addUser(fullName)" class="btn btn-primary">Add</button>
   </div>
 </form>

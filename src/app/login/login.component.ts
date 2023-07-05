@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
     password: string;
   }>();
 
-  addUser() {
+  addUser(fullName: any) {
+    console.log(fullName.value);
     this.addUserEvent.emit({
       email: this.email,
       password: this.password,
