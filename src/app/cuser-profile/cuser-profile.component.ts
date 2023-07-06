@@ -10,6 +10,10 @@ export class CuserProfileComponent implements OnInit {
     email: '',
     password: '',
   };
-  constructor() {}
-  ngOnInit(): void {}
+  constructor() {
+    console.log("constructor")
+  }
+  ngOnInit(): void {
+    console.log("ngOnInit")
+  }
 }
