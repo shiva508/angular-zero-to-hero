@@ -1,3 +1,27 @@
 <style></style>
-<div class="container"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <app-game-control
+        (intervalFired)="onIntervalFired($event)"
+      ></app-game-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-even
+        *ngFor="let eventNumber of evenNumbers"
+        [eventNumber]="eventNumber"
+      ></app-even>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-odd
+        *ngFor="let oddNumber of oddNumbers"
+        [oddNumber]="oddNumber"
+      ></app-odd>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
