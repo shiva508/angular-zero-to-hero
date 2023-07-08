@@ -1,3 +1,12 @@
-<style></style>
-<div class="container"></div>
+<app-header (featureSelected)="onSelectFeature($event)"></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-recipes *ngIf="pageType === 'recipe'"></app-recipes>
+      <app-shopping-list
+        *ngIf="pageType === 'shopping-list'"
+      ></app-shopping-list>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
