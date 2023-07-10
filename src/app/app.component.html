@@ -1,3 +1,52 @@
 <style></style>
-<div class="container"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="changeState()">
+        Only Show Odd numbers
+      </button>
+    </div>
+    <br /><br />
+    <ul class="list-group">
+      <div *ngIf="!onlyOdd">
+        <li
+          class="list-group-item"
+          *ngFor="let even of evenNumber"
+          [ngClass]="{ even: even % 2 == 0 }"
+          [ngStyle]="{ backgroundColor: even % 2 == 0 ? '#66ff8c' : '#00ff40' }"
+        >
+          {{ even }}
+        </li>
+      </div>
+      <div *ngIf="onlyOdd">
+        <li
+          class="list-group-item"
+          *ngFor="let odd of oddNumber"
+          [ngClass]="{ odd: odd % 2 !== 0 }"
+          [ngStyle]="{ backgroundColor: odd % 2 !== 0 ? '#6666ff' : '' }"
+        >
+          {{ odd }}
+        </li>
+      </div>
+    </ul>
+    <p appBasicHeilight>My Directive</p>
+    <p appBetterHeilight>My Directive</p>
+    <p appBetterHeilightRenderer2>Renderer2 Directive Approch</p>
+    <p appBetterHeilightHostListener>Host Listener Directive Approch</p>
+    <p appBetterHeilightHostBinding>Host Binding Directive Approch</p>
+    <p
+      appBetterHeilightDynamicHostBinding
+      [heilightColor]="'#03fc7f'"
+      [defaultColor]="'#814eed'"
+    >
+      Dynamic Host Binding Directive Approch
+    </p>
+    <p *appUnless="true">Structural Directive true</p>
+    <p *appUnless="false">Structural Directive false</p>
+    <div [ngSwitch]="423">
+      <p *ngSwitchCase="408">Shiva</p>
+      <p *ngSwitchCase="423">Kousar</p>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
