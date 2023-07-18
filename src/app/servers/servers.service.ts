@@ -17,7 +17,7 @@ export class ServersService {
     return this.servers;
   }
 
-  getServer(id: number) {
+  getServer(id: number): any {
     const server = this.servers.find((s) => {
       return s.id === id;
     });

@@ -8,6 +8,9 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { ServerComponent } from './servers/server/server.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuardService } from './auth-guard.service';
+import { CanDeactivateGaurdService } from './servers/edit-server/can-deactivate-gaurd.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { ServerResolverService } from './servers/server/server-resolver.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,16 +26,29 @@ const routes: Routes = [
     canActivateChild: [AuthGuardService],
     component: ServersComponent,
     children: [
-      { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent },
+      {
+        path: ':id',
+        component: ServerComponent,
+        resolve: { server: ServerResolverService },
+      },
+      {
+        path: ':id/edit',
+        component: EditServerComponent,
+        canDeactivate: [CanDeactivateGaurdService],
+      },
     ],
   },
-  { path: 'pagenotfound', component: PageNotFoundComponent },
+  // { path: 'pagenotfound', component: PageNotFoundComponent },
+  {
+    path: 'pagenotfound',
+    component: ErrorPageComponent,
+    data: { message: 'Page not found!' },
+  },
   { path: '**', redirectTo: 'pagenotfound' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
