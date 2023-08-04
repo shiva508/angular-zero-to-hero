@@ -1,0 +1,69 @@
+<div class="container">
+  <h1>Topic Types</h1>
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-10">
+      <form
+        #topicTypeForm="ngForm"
+        (ngSubmit)="addTopicType(topicTypeForm.value)"
+      >
+        <div class="form-group" style="display: none">
+          <input
+            type="number"
+            ngModel
+            class="form-control"
+            name="topicTypeId"
+            id="topicTypeId"
+            hidden
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Topic Type</label>
+          <input
+            type="text"
+            ngModel
+            class="form-control"
+            name="topicTypeName"
+            id="topicTypeName"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!topicTypeForm.valid"
+        >
+          Add New
+        </button>
+      </form>
+    </div>
+  </div>
+  <hr />
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Topic Type Id</th>
+        <th scope="col">Topic Type</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let topicType of topicTypes">
+        <th scope="row">{{ topicType.topicTypeId }}</th>
+        <td>{{ topicType.topicTypeName }}</td>
+        <td>
+          <button type="button" class="btn btn-success">Edit</button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteTopicType(topicType.topicTypeId)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

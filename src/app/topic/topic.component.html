@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-10">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Topic Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter topic title"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >Give most reliable info.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Topic Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Topic Description"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Topic Type</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option
+              *ngFor="let topicType of topicTypes"
+              value="{{ topicType.topicTypeName }}"
+            >
+              {{ topicType.topicTypeName }}
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
