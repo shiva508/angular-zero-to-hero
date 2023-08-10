@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TopicType } from 'src/app/model/modelfactory';
 
@@ -15,7 +15,14 @@ export class TopicTypeService {
   }
   getAllTopicTypes() {
     return this.httpClient.get<TopicType[]>(
-      'http://localhost:8084/api/topictype/all'
+      'http://localhost:8084/api/topictype/all',
+      { headers: new HttpHeaders({ username: 'shiva' }) }
+    );
+  }
+
+  deleteTopicType(topicTypeId: number) {
+    return this.httpClient.delete(
+      'http://localhost:8084/api/topictype/delete/' + topicTypeId
     );
   }
 }

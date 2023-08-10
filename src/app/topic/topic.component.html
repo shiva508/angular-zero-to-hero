@@ -1,13 +1,15 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-lg-10">
-      <form>
+      <form #topicForm="ngForm" (ngSubmit)="onCreateNewTopic(topicForm.value)">
         <div class="form-group">
           <label for="exampleInputEmail1">Topic Name</label>
           <input
             type="text"
             class="form-control"
-            id="exampleInputEmail1"
+            id="topicName"
+            name="topicName"
+            ngModel
             aria-describedby="emailHelp"
             placeholder="Enter topic title"
           />
@@ -16,17 +18,8 @@
           >
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Topic Description</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleInputPassword1"
-            placeholder="Topic Description"
-          />
-        </div>
-        <div class="form-group">
           <label for="exampleFormControlSelect1">Topic Type</label>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select class="form-control" id="topicType" name="topicType" ngModel>
             <option
               *ngFor="let topicType of topicTypes"
               value="{{ topicType.topicTypeName }}"
@@ -35,8 +28,59 @@
             </option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!topicForm.valid"
+        >
+          Submit
+        </button>
       </form>
     </div>
   </div>
+  <hr />
+  <div class="row justify-content-md-center" *ngIf="fetching">
+    <div class="col col-lg-10">
+      <h1>No records are avalable</h1>
+    </div>
+  </div>
+
+  <div
+    class="row justify-content-md-center"
+    *ngIf="topics.length === 0 && !fetching"
+  >
+    <div class="col col-lg-10">
+      <h1>No records are avalable</h1>
+    </div>
+  </div>
+  <table class="table table-dark" *ngIf="topics.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">Topic Id</th>
+        <th scope="col">Topic Name</th>
+        <th scope="col">Topic Type</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let topic of topics">
+        <th scope="row">{{ topic.topicId }}</th>
+        <td>{{ topic.topicName }}</td>
+        <td>{{ topic.topicType }}</td>
+        <td>
+          <button type="button" class="btn btn-success">Edit</button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteTopic(topic.topicId)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

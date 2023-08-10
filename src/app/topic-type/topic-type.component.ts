@@ -10,27 +10,43 @@ import { TopicTypeService } from '../service/topictype/topic-type.service';
 })
 export class TopicTypeComponent implements OnInit {
   topicTypes: TopicType[] = [];
-  constructor(
-    private httpClient: HttpClient,
-    private topicTypeService: TopicTypeService
-  ) {}
+  error: string = '';
+  constructor(private topicTypeService: TopicTypeService) {}
   ngOnInit(): void {
     this.getTopicType();
   }
   addTopicType(formData: { topicTypeId: number; topicTypeName: string }) {
     this.topicTypeService
-      .saveTopicType(new TopicType(0, formData.topicTypeName))
-      .subscribe((response) => {
-        console.log(response);
-      });
+      .saveTopicType(new TopicType(0, formData.topicTypeName.trim()))
+      .subscribe(
+        (response) => {
+          this.getTopicType();
+        },
+        (error) => {
+          this.error = error.message;
+        }
+      );
   }
 
   getTopicType() {
-    this.topicTypeService.getAllTopicTypes().subscribe((response) => {
-      this.topicTypes = response;
-    });
+    this.topicTypeService.getAllTopicTypes().subscribe(
+      (response) => {
+        this.topicTypes = response;
+      },
+      (error) => {
+        console.log(error);
+        this.error = error.message;
+      }
+    );
   }
   deleteTopicType(topicTypeId: number) {
-    console.log(topicTypeId);
+    this.topicTypeService.deleteTopicType(topicTypeId).subscribe(
+      (response) => {
+        this.getTopicType();
+      },
+      (error) => {
+        this.error = error.message;
+      }
+    );
   }
 }
