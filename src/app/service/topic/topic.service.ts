@@ -11,16 +11,18 @@ export class TopicService {
 
   saveTopic(topic: Topic) {
     return this.httpClient.post<Topic>(
-      'http://localhost:8084/api/topic/save',
+      'http://192.168.49.2:30008/api/topic/save',
       topic
     );
   }
   getAllTopics() {
-    return this.httpClient.get<Topic[]>('http://localhost:8084/api/topic/all');
+    return this.httpClient.get<Topic[]>(
+      'http://192.168.49.2:30008/api/topic/all'
+    );
   }
   deleteTopic(topicId: number) {
     return this.httpClient.delete(
-      'http://localhost:8084/api/topic/delete?topicId=' + topicId
+      'http://192.168.49.2:30008/api/topic/delete?topicId=' + topicId
     );
   }
 }
