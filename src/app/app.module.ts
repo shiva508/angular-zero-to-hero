@@ -11,6 +11,7 @@ import { TopicTypeComponent } from './topic-type/topic-type.component';
 import { TopicTypeListComponent } from './topic-type/topic-type-list/topic-type-list.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { LoggingInterceptor } from './logging.interceptor';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { LoggingInterceptor } from './logging.interceptor';
     TopicComponent,
     TopicTypeComponent,
     TopicTypeListComponent,
+    AuthComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
